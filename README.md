@@ -26,10 +26,11 @@ In this project we will learn how to use a variety of DOM selectors and manipula
 
 - DOM is dynamiccly chaning
 
-<!-- DOM Selectors -->
+<!-- DOM Selectors -->git adfd
 
-- textContent: you can't set textContent on a collection of elements, only used after one element
+- textContent: you can't set textContent or change style on a collection of elements, only used after one element
 
 - querySelector v. querySelectorAll: 
 - after a single element vs. a collection of elements
 - querySelectorAll never give us a null, gine us empty list if cannot find it
+- since querySelectorAll produce an array like items, you need to use .forEach to style each elements in the collection
