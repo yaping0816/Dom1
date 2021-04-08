@@ -1,7 +1,8 @@
 // USING THE DOM TO EDIT ELEMENTS ON THE PAGE (AND ADD NEW ONES)
 
-// - making a clone of the div.card ad appending it to the dic.card-group
-// with the querySelectot, you got an element or null (or the first match if several elements match the css select)
+// 👉 7- Making a copy of the card and appending it to the card group
+// DOM nodes can only exist in one spot in the DOM
+// We cannot append the same copy multiple times
 
 const data = [
     {heading: 'Cat 1'},
@@ -42,17 +43,20 @@ console.log(realArrayOfCards);
 
 
 // 👉 1- Finding an element on the page and saving a reference to it
-//  Older: getElementById, getElementsByTagName, getElementsByClassName
-//  Newer: querySelector, querySelectorAll (always use the newer way)
+//  👎 Older: getElementById, getElementsByTagName, getElementsByClassName
+//  👍 Newer: querySelector, querySelectorAll (always use the newer way)
 //  Select the following single elements from the div.card
 
 // A- finding across the entire DOM
 const header = document.querySelector('header');
 const logoTitle = document.querySelector('#logoTitle'); //need to inspect the webpage in order to find the logo title id name
-const firstCard = document.querySelector('.card');
+const firstCard = document.querySelector('.card:nth-of-type(1)');
 const secondCard = document.querySelectorAll('.card')[1];
 // const imageFirstCard = document. querySelector('img'); // if there is an <img> on the header or whatever above card, this will point to there, so this is not right
 const imageFirstCard = firstCard.querySelector('img');
+const titleFirstCard = document.querySelector('.card-title');
+const subtitleFirstCard = document.querySelector('.card-subtitle');
+const textFirstCard = document.querySelector('.card-text');
 
 // B- finding element in second card
 const imageSecondCard = secondCard.querySelector('img');
@@ -61,17 +65,30 @@ const subtitleSecondCard = secondCard.querySelector('.card-subtitle');
 const textSecondCard = secondCard.querySelector('.card-text');
 const cardLink1 = secondCard.querySelector('a');
 const cardLink2 = secondCard.querySelector('a:nth-of-type(2)');
+
 // C- traversing with dot notation
 // const link1FirstCard = document.querySelector('a'); //this will point to the first link on the page which is the first tag in header <nav>
-const link1FirstCard = firstCard.querySelector('a');
-const link2FirstCard = firstCard.querySelectorAll('a')[1];
+// const link1FirstCard = firstCard.querySelector('a');
+const link1FirstCard = textFirstCard.nextElementSibling;
+console.log(link1FirstCard)
+// const link2FirstCard = firstCard.querySelectorAll('a')[1];
+const link2FirstCard  = link1FirstCard.nextElementSibling;
 
 
 // 👉 2- Finding collections of elements in the DOM
 // A- Find all the anchor tags inside the nav element
+const anchorTags = document.querySelectorAll('nav a'); //anchorTahs is a nodeList
+
 // B- Loop over the links and console.log their text content
+anchorTags.forEach(anchor => console.log(anchor.textContent));
+
 // C- Turn the collection of links into a real array
+const arrAnchorTags = Array.from(anchorTags);
+
 // D- Use .filter to find the anchor tag with the textContent of "Home"
+const homeAnchor = arrAnchorTags.filter(anchor => anchor.textContent === 'Home');
+console.log(homeAnchor);
+
 
 
 // 👉 3- Changing an element's text content
@@ -79,7 +96,7 @@ const link2FirstCard = firstCard.querySelectorAll('a')[1];
 
 titleSecondCard.textContent = 'Dog 2';
 subtitleSecondCard.textContent = 'I\'m tired';
-textSecondCard.textContent = 'Meow';
+textSecondCard.textContent = 'Dogs are the best';
 cardLink1.textContent = 'new mlink 1';
 cardLink2.textContent = 'new mlink 2';
 
@@ -94,6 +111,8 @@ link2FirstCard.textContent = 'link 2';
 
 // 👉 4- Changing any property
 //  A- Using dot notation to change a few attributes
+console.dir(textSecondCard); //allow us to inspect all the keys in the object
+// textSecondCard.className = 'new-class-card-name';
 
 imageSecondCard.src = 'https://th.bing.com/th/id/OIP.TmKRCBFPjmOycunjmnIp5AHaE7?w=285&h=190&c=7&o=5&dpr=3&pid=1.7';
 
@@ -105,21 +124,21 @@ imageSecondCard.setAttribute('src', 'https://th.bing.com/th/id/OIP.sonbuZCGYfJEa
 
 
 // 👉 5- Changing the styling of an element(the 'sky' classname should turn bg color to blue)
+
 //  A- By changing the class names on the element with the classList API
 
-// imageSecondCard.setAttribute('class', 'card sky') //change calss name to 'card sky' on second card image element, but this isn't the better way
+// 👎 imageSecondCard.setAttribute('class', 'card sky') //change calss name to 'card sky' on second card image element, but this isn't the better way
 
-// best way is to use classList, never break
+// 👍 best way is to use classList, never break
 secondCard.classList.add('sky'); // add the 'sky' to the current class name of the second card which is 'card' ,now becomes 'card sky'
+// add new class, so if the className already exsit, .add won't add the same className twice
 header.classList.add('sky'); // add the 'sky' to the current header class name which didn't exist, now with the new class name 'sky'
 header.classList.remove('sky'); // remove the 'sky' class name
 
-
-// if you want to toggle between adding and remocing a class name from an element 
-// setInterval(() => {
-//     header.classList.toggle('sky')
-// }, 1000)
-
+// if you want to toggle between adding and removing a class name from an element, so if the className ('sky' here) is set, remove it, otjerwise add it 
+setInterval(() => {
+    // header.classList.toggle('sky')
+}, 1000)
 
 
 //  B- By manipulating inline styles on the element
@@ -134,11 +153,9 @@ secondCard.style.backgroundColor = 'royalblue';
 const newLink = document.createElement('a');
 newLink.textContent = 'Blog';
 newLink.href = '#';
+newLink.classList.add('menu-item');
+// add the element to the end using .appendChild(childElement); add the element to the begining, using .prepend(childElement)
 document.querySelector('#mainNav').appendChild(newLink); //use inspect to find the parent element of whereever you want to attach your element, here we'd like to attach it to the <nav>. The parent element of <nav> is #mainNav
-
-// 👉 7- Making a copy of the card and appending it to the card group
-// DOM nodes can only exist in one spot in the DOM
-// We cannot append the same copy multiple times
 
 
 // 👉 8- Removing an existing element and putting it back [STRETCH if time allows]
