@@ -1,6 +1,6 @@
 // USING THE DOM TO EDIT ELEMENTS ON THE PAGE (AND ADD NEW ONES)
 
-// 👉 7- Making a copy of the card and appending it to the card group
+// 👉 1- Making a copy of the card and appending it to the card group
 // DOM nodes can only exist in one spot in the DOM
 // We cannot append the same copy multiple times
 
@@ -42,7 +42,7 @@ console.log(realArrayOfCards);
 
 
 
-// 👉 1- Finding an element on the page and saving a reference to it
+// 👉 2- Finding an element on the page and saving a reference to it
 //  👎 Older: getElementById, getElementsByTagName, getElementsByClassName
 //  👍 Newer: querySelector, querySelectorAll (always use the newer way)
 //  Select the following single elements from the div.card
@@ -75,7 +75,7 @@ console.log(link1FirstCard)
 const link2FirstCard  = link1FirstCard.nextElementSibling;
 
 
-// 👉 2- Finding collections of elements in the DOM
+// 👉 3- Finding collections of elements in the DOM
 // A- Find all the anchor tags inside the nav element
 const anchorTags = document.querySelectorAll('nav a'); //anchorTahs is a nodeList
 
@@ -91,7 +91,7 @@ console.log(homeAnchor);
 
 
 
-// 👉 3- Changing an element's text content
+// 👉 4- Changing an element's text content
 //  A- Change all of the text in the second card
 
 titleSecondCard.textContent = 'Dog 2';
@@ -109,7 +109,7 @@ link2FirstCard.textContent = 'link 2';
 
 
 
-// 👉 4- Changing any property
+// 👉 5- Changing any property
 //  A- Using dot notation to change a few attributes
 console.dir(textSecondCard); //allow us to inspect all the keys in the object
 // textSecondCard.className = 'new-class-card-name';
@@ -123,7 +123,7 @@ imageSecondCard.setAttribute('src', 'https://th.bing.com/th/id/OIP.sonbuZCGYfJEa
 
 
 
-// 👉 5- Changing the styling of an element(the 'sky' classname should turn bg color to blue)
+// 👉 6- Changing the styling of an element(the 'sky' classname should turn bg color to blue)
 
 //  A- By changing the class names on the element with the classList API
 
@@ -148,7 +148,7 @@ secondCard.style.backgroundColor = 'royalblue';
 
 
 
-// 👉 6- Creating new elements from scratch and appending them
+// 👉 7- Creating new elements from scratch and appending them
 // Create a new link inside the nav for "Blog"
 const newLink = document.createElement('a');
 newLink.textContent = 'Blog';
