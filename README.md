@@ -20,13 +20,13 @@ In this project we will learn how to use a variety of DOM selectors and manipula
 
 <!-- what is a DOM -->
 
-- DOM is an interface (a collection of buttons, levers, readouts) that your code can use to manipulate the page. Dom is a global variable which is on the windoW object.
+- DOM is an interface (a collection of buttons, levers, readouts) that your code can use to manipulate the page. Dom is a global variable which is on the window object.
 - 
 - D: when the broswer send request to server, the server will respond with like index.html, .css, .js, img, .woff, etc. index.html is the DOCUMENT that allow the broswer to show something
 
 - O: between receiving the HTML file and displaying it on the webpage, the broswer converts the HTML elemtents into objects which are known as DOM nodes and all of them are contained in a big object(document object) which is DOM. Even if the document object is displayed in console in a mark-up sytax, it's actually an object, you can see the key and value pairs using console.dir(document), you can also use document.body to show the value of body in docuement. Every element in the document object is an object also.
 
-- M: Modal is how our objects looks. DOM is a tree-like structure
+- M: Model is how our objects looks. DOM is a tree-like structure
   
 - DOM is just a tree of nodes (or objects). Each node represents part of the browsers page that the viewers interact with. The DOM isn’t specific to Javascript or any other language. It’s just the structure that all browsers refer to and that constructs all web pages. The document object is essentially the DOM.
 

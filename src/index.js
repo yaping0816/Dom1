@@ -159,6 +159,22 @@ document.querySelector('#mainNav').appendChild(newLink); //use inspect to find t
 
 
 // 👉 8- Removing an existing element and putting it back [STRETCH if time allows]
+const cardBody = document.querySelector('.card-body');
+const cardSub = document.querySelector('.card-subtitle');
+cardBody.removeChild(cardSub); //remove
+
+const newSub = document.createElement('h3');
+const cardText = document.querySelector('.card-text')
+newSub.textContent = 'I\'m sleepy';
+cardBody.insertBefore(newSub,cardText );
 
 
 // 👉 9- Show to students the insertAdjacentHTML method [STRETCH if time allows]
+// referenceElement.insertAdjacentElement(where, newElement)
+// there are 4 positons: 
+// beforebegin(before the reference itself), afterbegin(just inside the referenceElement , before its first child), beforeend(inside of reference, after its last child), afterend(after the reference element)
+
+const newP = document.createElement('p');
+newP.textContent = 'Don\'t mess with me!!!';
+cardText.insertAdjacentElement('beforeend', newP);
+
